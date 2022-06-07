@@ -9,15 +9,15 @@ SUDS = Simple Up Down Service
 ## Instructions
 If you read the instructions, you can set it up yourself! It's not nifty by any means but it can at least tell you if something is up or down. RTFM, it's instructions.txt
 
-Tl;dr - Do a git clone, open up two terminals, activate the virtual environment in both terminals, then run the python file inside of svc_pingparallel and in the other terminal do **py manage.py runserver 0.0.0.0:8000**
+Tl;dr - Do a git clone, open up two terminals, activate the virtual environment in both terminals, in one terminal do **py manage.py runserver 0.0.0.0:8000** then run the python file inside of svc_pingparallel in the other terminal.... in that order
 
 ## Disclaimer
-**Don't use in a production environment. The API is wide open, no username or password required. The API is also exempt from CSRF.**
+**Don't use this project in a production environment. The API is wide open, no username or password required. The API is also exempt from CSRF.**
 
 ## What does this project use?
-1. Python 3.10, 
-2. Django 4.0.4, 
-3. FontAwesome (CSS), 
+1. Python 3.10
+2. Django 4.0.4
+3. FontAwesome (CSS)
 4. Bootstrap 5
 
 ## How does it work?
@@ -44,6 +44,7 @@ Tl;dr - Do a git clone, open up two terminals, activate the virtual environment 
 4. A clock would probably be useful on the front page
 5. A logout button in the navbar
 6. Maybe having the page auto-refresh? (A core feature that is missing honestly)
+7. Enforcing User/Password for API
 
 ## Screenshots
 ### /home/ - No Devices down
