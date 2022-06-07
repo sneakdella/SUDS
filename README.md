@@ -11,3 +11,18 @@ Utilizes Python 3.10 and Django 4.0.4
 Tl;dr - Do a git clone, open up two terminals, activate the virtual environment in both terminals, then run the python file inside of svc_pingparallel and in the other terminal do **py manage.py runserver 0.0.0.0:8000**
 
 Disclaimer: Don't use in a production environment. The API is wide open and is exempt from CSRF. 
+
+### /home/ - No Devices down
+![](screenshots/home_example.png)
+
+### /home/ - When Devices Are Down
+![](screenshots/home_example_2.png)
+
+### See All Devices at /device-list/
+![](screenshots/devices_example.png)
+
+### See Events at /events/
+![](screenshots/events_example.png)
+
+### Use /admin/ to add or remove "devices" to monitor
+![](screenshots/device_admin.png)
