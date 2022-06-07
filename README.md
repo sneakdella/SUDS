@@ -43,7 +43,7 @@ Tl;dr - Do a git clone, open up two terminals, activate the virtual environment 
 3. CSS Overhaul because my CSS and HTML code is gross
 4. A clock would probably be useful on the front page
 5. A logout button in the navbar
-6. Maybe having the page auto-refresh?
+6. Maybe having the page auto-refresh? (A core feature that is missing honestly)
 
 ## Screenshots
 ### /home/ - No Devices down
