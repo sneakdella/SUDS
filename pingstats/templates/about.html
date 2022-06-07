@@ -1,0 +1,121 @@
+
+<!doctype html>
+
+{% load static %}
+<head>
+    <script src="https://kit.fontawesome.com/b972ef5b7a.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- FONT AWESOME KIT -->
+    
+</head>
+<header style="padding-bottom:20px;">
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 20px;">
+                <a class="navbar-brand" href="#">SUDS 1.0 - DEV</a>
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> !-->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'devices' %}">Devices</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'events' %}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'about' %}">About<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li>
+                        <a class="nav-link disabled" href="#" style="float: right;">Logged In As: {{ current_user.username }}</a>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<body class="bg" style="background-color: #3a4042;">
+    <div class="container bg bg-dark text-light border" style="padding-top:20px;">
+        <div class="row text-center">
+            <div class="col">
+                <h2 class="border-bottom" style="padding-bottom:10px;">Credits</h2>
+                <p>Developed by Jacob Yuhas</p>
+                <p>June 2022</p>
+            </div>
+            <div class="col">
+                <h2 class="border-bottom" style="padding-bottom:10px;">Manage Devices</h2>
+                <p> To Manage devices use: </p>
+                <p><code>https://site_name_or_ipaddress/admin</code></p>
+            </div>
+            
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">Disclaimer</h2>
+                <p><strong>Please do not use this project in a production setting</strong></p>
+                <p><strong>The API is currently wide open without CSRF protection and no login required</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2 class="border-bottom" style="padding-bottom:10px;">What does SUDS Mean?</h2>
+                <p><strong>S</strong>imple</p>
+                <p><strong>U</strong>p</p>
+                <p><strong>D</strong>own</p>
+                <p><strong>S</strong>ervice</p>
+            </div>
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">Why Did I Make This?</h2>
+                <ol>
+                    <li>I wanted to revisit my Python skills</li>
+                    <li>I wanted a simple monitoring tool that wouldn't be a resource hog</li>
+                    <li>I wanted to make my own ping tool.</li>
+                    <li>I wanted to write my own API</li>
+                    <li>The subservice uses multithreading to ping, which is cool.</li>
+                    <li>Someday, it would be cool to be in a Devops position, I feel like this is a great first step.</li>
+                    <li>Most of all, I wanted to be able to package and deliver a monitoring tool that can be used on any OS that is 100% free</li>
+                </ol>
+            </div>
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">How does it work?</h2>
+                <ol>
+                    <li>Django just does web server things and runs forever</li>
+                    <li>My python script in the svc_pypingparallel folder should also run forever</li>
+                    <li>My python script then will pull from http://sitename/api and ping all the devices</li>
+                    <li>Then it uses the API to PATCH (update) the status of a device</li>
+                    <li>If a device's state was not the same, it also will write to the events model and timestamp it</li>
+                </ol>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">What's left for the project?</h2>
+                <ol>
+                    <li>Timezone Awareness and setting a proper timezone that is exclusive to the user</li>
+                    <li>Maintenance Mode setting for devices</li>
+                    <li>CSS Overhaul because my CSS and HTML code is gross</li>
+                    <li>A clock would probably be useful on the front page</li>
+                    <li>A logout button in the navbar</li>
+                    <li>Maybe having the page auto-refresh?</li>
+                </ol>
+            </div>
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">Misc</h2>
+                <ol>
+                    <li>Make sure to get your own Fontawesome kit if you actually want to use this and change the URL in the CSS</li>
+                </ol>
+            </div>
+            <div class="col">
+                <h2 class="border-bottom text-center" style="padding-bottom:10px;">What is used?</h2>
+                <ol>
+                    <li>Python 3.10</li>
+                    <li>Django 4.0.4</li>
+                    <li>Icons - https://fontawesome.com/</li>
+                    <li>CSS - Bootstrap 5 via CDN</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

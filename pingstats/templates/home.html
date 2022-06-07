@@ -1,0 +1,126 @@
+
+<!doctype html>
+
+{% load static %}
+<head>
+    <script src="https://kit.fontawesome.com/b972ef5b7a.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- FONT AWESOME KIT -->
+    
+</head>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 20px;">
+                <a class="navbar-brand" href="#">SUDS 1.0 - DEV</a>
+                <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> !-->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link active" href="{% url 'home' %}">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'devices' %}">Devices</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'events' %}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link disabled" href="#" style="float: right;">Logged In As: {{ current_user.username }}</a>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<body class="bg" style="background-color: #3a4042;">
+    <div class="container-fluid" style="padding-top: 10px;">
+        <div class="row">
+            <div class="col-md text-center">
+                {% if ping_status_down_switch == "TRUE" %}
+                <h2 class="border-bottom" style="color: white; padding-bottom:10px;"><i class="fa fa-solid fa-triangle-exclamation fa-fade" style="color: yellow;"></i> Ping Failures Detected <i class="fa fa-solid fa-triangle-exclamation fa-fade" style="color: yellow;"></i></h2>
+                    <table class="table table-dark table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">FQDN</th>
+                                <th scope="col">IP Address</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Icon</th>
+                            </tr>
+                        </thead>
+                        {% for device in dev_objects_list %}
+                        <tr class="table-warning">
+                            {% if device.status == "DOWN" %}
+                                <td scope="row"> {{ device.device_name }} </td>
+                                <td >{{ device.ip_address }}</td>
+                                <td>{{ device.status }} </td>
+                                <td><i class="fa-solid fa-triangle-exclamation fa-beat" style="color: #FA0000;"></i></td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <h2 class="border-bottom" style="color: white; padding-bottom: 10px;">Nothing is Down!</h2>
+                    <i class="fa-3x fa-regular fa-face-smile" style="color: white;"></i>
+                    <i class="fa-3x fa-solid fa-network-wired" style="color: white;"></i>
+                {% endif %}
+            </div>
+            <div class="col-md text-center">
+                <h2 class="border-bottom" style="color: white; padding-bottom:10px;">Monitored Devices Statistics</h2>
+                <table class="table table-dark table-bordered table-hover text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">Up</th>
+                            <th scope="col">Down</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">%</th>
+                        </tr>
+                    </thead>
+
+                    <tr>
+                        <td scope="row"> {{ DEVICES_UP }}  </td>
+                        <td> {{ DEVICES_DOWN }}</td>
+                        <td> {{ TOTAL_DEVICES }} </td>
+                        <td> {{ PERCENT_UP }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg text-center border-bottom">
+                <h2 class="border-bottom" style="color: white; padding-bottom:10px;">Recent Events</h2>
+                <table class="table table-dark table-bordered table-hover text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">Timestamp</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Severity</th>
+                        </tr>
+                    </thead>
+                    {% for event in recent_events_list %}
+                        <tr>
+                            <td scope="row"> {{ event.event_timestamp }} </td>
+                            <td> {{ event.event_type }} </td>
+                            <td> {{ event.event_description }}</td>
+                            {% if event.event_severity_level == "Green" %}
+                                <td><i class="fa-solid fa-circle" style="color:green"></i></td>
+                            {% elif event.event_severity_level == "Critical" %}
+                                <td><i class="fa-solid fa-circle" style="color:red"></i></td>
+                            {% elif event.event_severity_level == "Grey" %}
+                                <td><i class="fa-solid fa-circle" style="color:grey"></i></td>
+                            {% else %}
+                                <td>event.event_severity_level</td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

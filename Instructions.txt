@@ -1,0 +1,7 @@
+1.) So I like suck but just hear me out.
+2.) Open two terminals
+3.) Activate the python 3.10 environment in both.
+4.) Run svc_pypingparallel/SUDS_subservice.py in one terminal.
+5.) Run the Django webserver in another terminal.
+6.) Then go to http://ipaddress:8000/home/ in your web browser and login with Administrator/sudsisawesome
+7.) Use http://ipaddress:8000/admin/ to add/remove your own devices.

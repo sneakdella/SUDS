@@ -1,0 +1,73 @@
+
+<!doctype html>
+<head>
+    <script src="https://kit.fontawesome.com/b972ef5b7a.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- FONT AWESOME KIT -->
+    
+</head>
+<header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 20px;">
+                <a class="navbar-brand" href="#">SUDS 1.0 - DEV</a>
+                <div id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'devices' %}">Devices<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'events' %}">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li>
+                        <a class="nav-link disabled" href="#" style="float: right;">Logged In As: {{ current_user.username }}</a>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+<body class="bg" style="background-color:#3a4042;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md text-center">
+                <h2 style="color: white;">All Devices</h2>
+                <table class="table table-dark table-bordered table-hover text-left">
+                    <thead>
+                        <tr>
+                            <th scope="col">FQDN</th>
+                            <th scope="col">IP Address</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Icon</th>
+                        </tr>
+                    </thead>
+                    {% for device in dev_objects_list %}
+                        {% if device.status == "DOWN" %}
+                        <tr class="table-danger">
+                            <td scope="row"> {{ device.device_name }} </td>
+                            <td> {{ device.ip_address }}</td>
+                            <td> {{ device.status }} </td>
+                            <td><i class="fa-solid fa-triangle-exclamation fa-beat" style="color: #FA0000;"></i></td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td scope="row"> {{ device.device_name }} </td>
+                            <td> {{ device.ip_address }}</td>
+                            <td> {{ device.status }} </td>
+                            <td><i class="fa-solid fa-circle-check" style="color: #00FF00;"></i></td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
